@@ -8,8 +8,19 @@ const store = {
   reminders: new Map()
 };
 
+// Clear methods for testing
+const clearMethods = {
+  clear: () => {
+    store.users.clear();
+    store.categories.clear();
+    store.events.clear();
+    store.reminders.clear();
+  }
+};
+
 // user methods
 export const users = {
+  ...clearMethods,
   create: (email, hashedPassword) => {
     const id = uuidv4();
     const user = { id, email, hashedPassword };
@@ -26,6 +37,7 @@ export const users = {
 
 // category methods
 export const categories = {
+  ...clearMethods,
   create: (data) => {
     const id = uuidv4();
     const category = { id, ...data, createdAt: new Date() };
@@ -43,6 +55,7 @@ export const categories = {
 
 // event methods
 export const events = {
+  ...clearMethods,
   create: (data) => {
     const id = uuidv4();
     const event = { id, ...data, createdAt: new Date() };
@@ -71,6 +84,7 @@ export const events = {
 
 // reminder methods
 export const reminders = {
+  ...clearMethods,
   create: (data) => {
     const id = uuidv4();
     const reminder = { id, ...data, processed: false, createdAt: new Date() };
